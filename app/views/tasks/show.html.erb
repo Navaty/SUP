@@ -12,12 +12,20 @@
 
 <p>
   <strong>Project:</strong>
-  <%= @task.project_id %>
+  <%= @project.name%>
 </p>
 
 <p>
   <strong>Status:</strong>
-  <%= @task.status %>
+  <% if @task.status %>
+  Завершена
+  <% else %>
+  Открыта 
+  <% end %>
+</p>
+<p>
+  <strong>Создано:</strong>
+  <%= @task.created_by%>
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |

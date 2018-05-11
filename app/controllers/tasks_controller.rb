@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @project = Project.find(@task.project_id)
   end
 
   # GET /tasks/new
@@ -27,6 +28,8 @@ class TasksController < ApplicationController
   def create
    # @task = @project.tasks.create(task_params)
     @task = Task.new(task_params)
+    @task.created_by = current_user.id
+
 
     respond_to do |format|
       if @task.save
