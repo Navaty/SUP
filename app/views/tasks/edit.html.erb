@@ -26,6 +26,11 @@
     <%= form.number_field :project_id, id: :task_project_id %>
   </div>
 
+   <div class="field">
+    <%= form.label :assignet_to %>
+    <%= form.select(:assignet_to, @user_options, id: :task_assignet_to)%>
+  </div>
+
   <div class="field">
     <%= form.label :status %>
     <%= form.check_box :status, id: :task_status %>

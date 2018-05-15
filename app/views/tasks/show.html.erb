@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <strong>Assignet:</strong>
+  <%= @task.assignet_to %>
+</p>
+
+<p>
   <strong>Status:</strong>
   <% if @task.status %>
   Завершена
@@ -24,9 +29,10 @@
   <% end %>
 </p>
 <p>
-  <strong>Создано:</strong>
-  <%= @task.created_by%>
+  <strong>Created_by:</strong>
+  <%= User.find(@task.created_by).email%>
 </p>
+
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
