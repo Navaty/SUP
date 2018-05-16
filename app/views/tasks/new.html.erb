@@ -1,14 +1,6 @@
 <%= form_with(model: [ @task ],  local: true) do |form| %>
-  <% if @task.errors.any? %>
-    <div class="alert alert-danger">
-      <h5><%= t('common.errors') %> </h5>
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+
 
   <div class="form-group">
     <%= form.label :title %>
@@ -20,14 +12,14 @@
     <%= form.text_area :description, id: :task_description, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
+  <div class="field">
     <%= form.label :project_id %>
-    <%= form.number_field :project_id, :value => params[:project_id], id: :task_project_id, class: 'form-control' %>
+    <%= form.number_field :project_id, :value => params[:project_id], id: :task_project_id%>
   </div>
 
   <div class="form-group">
     <%= form.label :assignet_to %>
-    <%= form.select(:assignet_to, @user_options, id: :task_assignet_to)%>
+    <%= form.select(:assignet_to, @user_options, id: :task_assignet_to) %>
   </div>
 
   <div class="form-group">
