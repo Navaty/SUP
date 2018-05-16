@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
-	validates :name, :parent_id, presence: true
+	validates :name, presence: true
 	has_many :tasks
+   has_ancestry
 end

@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_parents_edit, only: [:edit, :update]
+  before_action :set_parents_create, only: [:new, :create]
 
   # GET /projects
   # GET /projects.json
@@ -31,7 +33,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, success: 'Проект успешно создан' }
         format.json { render :show, status: :created, location: @project }
       else
-        format.html { render :new, danger: 'Проект не создан'}
+        format.html { render :new}
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -62,6 +64,14 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def set_parents_create
+      @option_parent = Project.all.order(:name)
+    end
+
+    def set_parents_edit
+      @option_parent = Project.where(" id != #{@project.id} ").order(:name)      
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
