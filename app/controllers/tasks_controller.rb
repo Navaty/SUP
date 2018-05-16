@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 	before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :load_users, only: [:new, :edit, :create]
 
   # GET /tasks
   # GET /tasks.json
@@ -15,14 +16,12 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @user_options = User.all.map{|u| [u.email, u.id]} #убери в метод!
     #@project = Project.find(params[:project_id])
     @task = Task.new
       end
 
   # GET /tasks/1/edit
   def edit
-    @user_options = User.all.map{|u| [u.email, u.id]}
   end
 
   # POST /tasks
@@ -70,6 +69,10 @@ class TasksController < ApplicationController
   end
 
   private
+  def load_users
+    @user_options = User.all.map{|u| [u.email, u.id]}
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
