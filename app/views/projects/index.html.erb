@@ -1,10 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Projects</h1>
+<h1>Проекты</h1>
+<% @projects.each do |project| %>
 <article class="project">
-  <% @projects.each do |project| %>
   <section class="project-head">
-    <h2><%= link_to project.name, projects_path(project) %></h2>
+    <h2><%= link_to project.name, project_path(project) %></h2>
     <small>
       <time> <%= project.created_at.to_date.strftime("%d %B, %Y") %> </time>
 
@@ -13,10 +11,8 @@
       <%= link_to 'Удалить', project, method: :delete, data: { confirm: 'Are you sure?' } %>
     </small>
   </section>
-
   <section class="project-descrip">
     <%= project.description %>
   </section>
-  <% end %>
-
   </article>
+    <% end %>

@@ -1,3 +1,4 @@
 class Task < ApplicationRecord
-  belongs_to :project
+	validates :title, :project_id, :created_by, presence: true
+	belongs_to :project
 end
