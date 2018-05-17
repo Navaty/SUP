@@ -1,8 +1,11 @@
 <div class="submenu">
 	<h2> Проекты </h2>
 	<ul class="nav nav-pills nav-stacked">
-	<% Project.roots.each do |project| %>
-	<li class="nav-item">
-	<%= link_to project.name, project, class: "nav-link #{'active' if current_page?(project_path(project))}" %>
-	<%= render "shared/submenu_projects", projects: project.root.descendants.arrange %>
-	<% end %>
+		<% Project.roots.each do |project| %>
+		<li class="nav-item">
+			<%= link_to project.name, project, class: "nav-link #{'active' if current_page?(project_path(project))}" %>
+			<%= render "shared/submenu_projects", projects: project.root.descendants.arrange %>
+		</li>
+		<% end %>
+	</ul>
+</div>
