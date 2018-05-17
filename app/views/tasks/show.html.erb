@@ -1,38 +1,35 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
+<article class="project">
+    <section class="project-head">
+      <h2><%= @task.title %></h2>
+      <time> <%= @project.created_at.to_date.strftime("%d %B, %Y") %> </time>
+      <%= link_to 'Редактировать', edit_task_path(@task), class: "btn btn-default col-md-offset-8" %>
+    </section>
+        <p> Задача
+        <% if @task.status %>
+          завершена
+        <% else %>
+          открыта 
+        <% end %> 
+      </p>
+     <p >  <strong>Проект: </strong>
+    <%= link_to @project.name, project_path(@project) %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
+  <strong>Описание:</strong>
+  <pre>
+    <%= @task.description %>
+  </pre>
+</p> 
+
+<p><strong>Присвоено:</strong>
+      <%= User.find(@task.assignet_to).email %>
+      </p>
 
 <p>
-  <strong>Project:</strong>
-  <%= @project.name%>
-</p>
-
-<p>
-  <strong>Assignet:</strong>
-  <%= @task.assignet_to %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <% if @task.status %>
-  Завершена
-  <% else %>
-  Открыта 
-  <% end %>
-</p>
-<p>
-  <strong>Created_by:</strong>
+  <strong>Создано:</strong>
   <%= User.find(@task.created_by).email%>
 </p>
 
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Назад', :back, class: 'btn btn-primary' %> 

@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 	before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :load_users, only: [:new, :edit, :create]
+  before_action :load_project, only:[:new, :edit, :create]
 
   # GET /tasks
   # GET /tasks.json
@@ -71,6 +72,9 @@ class TasksController < ApplicationController
   private
   def load_users
     @user_options = User.all.map{|u| [u.email, u.id]}
+  end
+  def load_project
+    @option_project = Project.all.order(:name)
   end
 
     # Use callbacks to share common setup or constraints between actions.
