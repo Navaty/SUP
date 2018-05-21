@@ -31,5 +31,18 @@
   <strong>Создано:</strong>
   <%= User.find(@task.created_by).email%>
 </p>
+</article>
 
-<%= link_to 'Назад', :back, class: 'btn btn-primary' %> 
+<%= render @task.comments %>
+
+<%= form_with(model: [ @task, @task.comments.build], local: true) do |form| %>
+  <p>
+    <%= form.label :Комментарий %><br>
+    <%= form.text_area :body %>
+    <%= form.text_field :commenter, type: 'hidden', value: current_user.id %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
