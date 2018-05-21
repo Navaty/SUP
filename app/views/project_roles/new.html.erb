@@ -1,0 +1,20 @@
+<%= form_with scope: :Project_role, local: true do |form| %>
+  <p>
+    <%= form.label :user_id %><br>
+    <%= form.text_field :user_id %>
+  </p>
+
+  <p>
+    <%= form.label :project_id  %><br>
+    <%= form.text_field :project_id  %>
+  </p>
+ 
+  <p>
+    <%= form.label :role %><br>
+    <%= form.text_area :role %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
