@@ -12,27 +12,27 @@
 
 
   <div class="form-group">
-    <%= form.label :title %>
+    <%= form.label :Название %>
     <%= form.text_field :title, id: :task_title, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :description %>
+    <%= form.label :Описание %>
     <%= form.text_area :description, id: :task_description, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :project_id %>
-    <%= form.number_field :project_id, :value => params[:project_id], id: :task_project_id%>
+    <%= form.label :Проект %>
+    <%= form.collection_select(:project_id, @option_project, :id, :name, {:selected => params[:project_id]}) %>
   </div>
 
   <div class="field">
-    <%= form.label :assignet_to %>
+    <%= form.label :Исполнитель %>
     <%= form.select(:assignet_to, @user_options, id: :task_assignet_to) %>
   </div>
 
   <div class="form-group">
-    <%= form.label :status %>
+    <%= form.label :Статус %>
     <%= form.check_box :status, id: :task_status %>
   </div>
 
