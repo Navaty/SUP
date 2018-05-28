@@ -1,0 +1,23 @@
+<h1>Результаты поиска</h1>
+<% if @search.products.empty? %>
+	<p>NOTHING</p>
+	<% else %>
+<% @search.products.each do |s| %>
+<br>
+	<article class="task">
+  <section class="task-head">
+    <h2><%= link_to s.title, task_path(s) %></h2>
+    <small>
+
+      <%= link_to 'Изменить', edit_task_path(s) %>
+
+      <%= link_to 'Удалить', s, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </small>
+  </section>
+  <section class="task-descrip">
+    <%= s.description %>
+  </section>
+  </article>
+	<% end %>
+
+<% end %>

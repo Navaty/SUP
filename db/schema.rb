@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180521071500) do
+ActiveRecord::Schema.define(version: 20180528121459) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "commenter"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20180521071500) do
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_projects_on_ancestry"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "keywords"
+    t.integer "project_id"
+    t.integer "assignet_to"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
