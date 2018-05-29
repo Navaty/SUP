@@ -11,28 +11,28 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :task_title %>
+    <%= form.label :Название %>
+    <%= form.text_field :title, id: :task_title, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :task_description %>
+    <%= form.label :Описание %>
+    <%= form.text_area :description, id: :task_description, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :project_id %>
-    <%= form.number_field :project_id, id: :task_project_id %>
+    <%= form.label :Проект %>
+    <%= form.collection_select(:project_id, @option_project, :id, :name) %>
   </div>
 
    <div class="form-group">
-    <%= form.label :assignet_to %>
+    <%= form.label :Исполнитель %>
     <%= form.select(:assignet_to, @user_options, id: :task_assignet_to)%>
   </div>
 
   <div class="form-group">
-    <%= form.label :status %>
-    <%= form.check_box :status, id: :task_status %>
+    <%= form.label :Статус %>
+    <%= form.select :status, [['Закрыта', true], ['Открыта', false]], id: :task_status %>
   </div>
 
   <div class="form-group">

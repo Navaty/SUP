@@ -1,15 +1,16 @@
 <h1>Проекты</h1>
-<%= link_to 'Создать', new_project_path, class: "btn btn-primary" %>
+<%= link_to 'Создать', new_project_path, class: "btn btn-primary btn-sm" %>
 <% @projects.each do |project| %>
 <article class="project">
   <section class="project-head">
     <h2><%= link_to project.name, project_path(project) %></h2>
     <small>
       <time> <%= project.created_at.to_date.strftime("%d %B, %Y") %> </time>
-
+      <% if user_signed_in? %>
       <%= link_to 'Изменить', edit_project_path(project) %>
 
       <%= link_to 'Удалить', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </small>
   </section>
   <section class="project-descrip">

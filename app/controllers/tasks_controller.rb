@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
 	before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :load_users, only: [:new, :edit, :create]
   before_action :load_project, only:[:new, :edit, :create]
@@ -6,7 +7,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /tasks/1

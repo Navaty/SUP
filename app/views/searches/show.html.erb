@@ -1,17 +1,18 @@
-<h1>Результаты поиска</h1>
+<h1>Найденные задачи</h1>
 <% if @search.products.empty? %>
 	<p>NOTHING</p>
 	<% else %>
+  <h4 class="text-success"> Количество найденных задач: <%= @search.products.count %> </h4>
 <% @search.products.each do |s| %>
-<br>
 	<article class="task">
   <section class="task-head">
     <h2><%= link_to s.title, task_path(s) %></h2>
     <small>
-
+      <% if user_signed_in? %>
       <%= link_to 'Изменить', edit_task_path(s) %>
 
       <%= link_to 'Удалить', s, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </small>
   </section>
   <section class="task-descrip">

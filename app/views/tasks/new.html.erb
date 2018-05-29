@@ -33,7 +33,7 @@
 
   <div class="form-group">
     <%= form.label :Статус %>
-    <%= form.check_box :status, id: :task_status %>
+    <%= form.select :status, [['Закрыта', true], ['Открыта', false]], id: :task_status %>
   </div>
 
   <div class="form-group">

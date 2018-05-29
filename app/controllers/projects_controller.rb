@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :set_parents_edit, only: [:edit, :update]
   before_action :set_parents_create, only: [:new, :create]

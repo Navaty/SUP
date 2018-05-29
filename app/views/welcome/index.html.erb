@@ -1,1 +1,20 @@
-<h1>Добро пожаловать!</h1>
+<% if @task %>
+	<% @task.each do |task| %>
+		<article class="task">
+			  <section class="task-head">
+			    <h2><%= link_to task.title, task_path(task) %></h2>
+			    <small>
+			      <time> <%= task.created_at.to_date.strftime("%d %B, %Y") %> </time>
+			      <% if user_signed_in? %>
+			      <%= link_to 'Изменить', edit_task_path(task) %>
+
+			      <%= link_to 'Удалить', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+			      <% end %>
+			    </small>
+			  </section>
+			  <section class="task-descrip">
+		    <%= task.description %>
+		  </section>
+		 </article>
+	<% end %>
+<% end %>

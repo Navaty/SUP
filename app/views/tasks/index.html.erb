@@ -1,16 +1,17 @@
 <h1>Задачи</h1>
-<%= link_to 'Создать', new_task_path, class: "btn btn-primary" %>
-<%= link_to 'Найти', new_search_path, class: "btn btn-secondary" %>
+<%= link_to 'Создать', new_task_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Найти', new_search_path, class: "btn btn-secondary btn-sm" %>
 <% @tasks.each do |task| %>
 <article class="task">
   <section class="task-head">
     <h2><%= link_to task.title, task_path(task) %></h2>
     <small>
       <time> <%= task.created_at.to_date.strftime("%d %B, %Y") %> </time>
-
+      <% if user_signed_in? %>
       <%= link_to 'Изменить', edit_task_path(task) %>
 
       <%= link_to 'Удалить', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </small>
   </section>
   <section class="task-descrip">
@@ -18,3 +19,4 @@
   </section>
   </article>
     <% end %>
+    <%= will_paginate @task %>
