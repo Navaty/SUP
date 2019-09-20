@@ -24,12 +24,12 @@
 </p> 
 
 <p><strong>Присвоено:</strong>
-      <%= User.find(@task.assignet_to).email %>
+      <%= User.find(@task.assignet_to).display_name %>
       </p>
 
 <p>
   <strong>Создано:</strong>
-  <%= User.find(@task.created_by).email%>
+  <%= User.find(@task.created_by).display_name%>
 </p>
 </article>
 
@@ -43,7 +43,7 @@
   </p>
 
   <p>
-    <%= form.submit %>
+    <%= form.submit "Отправить" %>
   </p>
 <% end %>
 

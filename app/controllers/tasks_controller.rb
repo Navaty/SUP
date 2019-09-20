@@ -70,6 +70,7 @@ class TasksController < ApplicationController
     end
   end
 
+
   private
   def load_users
     @user_options = User.all.map{|u| [u.email, u.id]}

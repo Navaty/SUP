@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Отчет") do |sheet|
+    sheet.add_row ["Id", "Название","Описание","Дата создания","Проект","Создал", "Исполнитель","Статус"]
+    @search.products.each do |s|
+        sheet.add_row [s.id, s.title,s.description,s.created_at, Project.find(s.project_id).name, User.find(s.created_by).email, User.find(s.assignet_to).email, s.status ? "Открыта" : "Закрыта"]
+    end
+end

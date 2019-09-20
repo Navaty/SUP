@@ -1,7 +1,6 @@
 class ReportController < ApplicationController
   def index
-  	@projects = Project.all
-  	@task = Task.all
+  	@project = Project.find(params[:project_id])
   end
   def show
   end

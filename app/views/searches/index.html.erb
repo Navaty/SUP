@@ -1,0 +1,20 @@
+<h1>Отчеты</h1>
+<%= link_to 'Создать', new_search_path(:title => 'Создание отчета'), class: "btn btn-primary btn-sm" %>
+<% @searches.each do |search| %>
+<article class="search">
+  <section class="search-head">
+    <h2><%= link_to "Отчет №#{search.id}", search_path(search) %></h2>
+    <small>
+      <time> <%= search.created_at.to_date.strftime("%d %B, %Y") %> </time>
+    </small>
+  </section>
+   <section class="search-desc">
+    По:
+    <%= "ключевым словам;" if search.keywords.present? %>
+    <%= "проектам;"  if search.project_id.present? %>
+    <%= "исполнителям;" if search.assignet_to.present? %>
+    <%= "статусу задач;" if search.status.present? %>
+    </section>
+  </article>
+    <% end %>
+    <%= will_paginate @search %>

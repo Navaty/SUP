@@ -1,6 +1,6 @@
 <h1>Задачи</h1>
 <%= link_to 'Создать', new_task_path, class: "btn btn-primary btn-sm" %>
-<%= link_to 'Найти', new_search_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Найти', new_search_path(:title => 'Поиск'), class: "btn btn-secondary btn-sm" %>
 <% @tasks.each do |task| %>
 <article class="task">
   <section class="task-head">

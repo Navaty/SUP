@@ -1,4 +1,5 @@
 class Search < ApplicationRecord
+
 	def products
 		@products ||= find_products
 	end
@@ -12,5 +13,5 @@ class Search < ApplicationRecord
 		products = products.where(status: status) if status.present?
 		products
 	end
-
+	
 end

@@ -1,38 +1,27 @@
-<h1>Отчеты</h1>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<h1>Задачи проекта <%= @project.name %></h1>
+ <%= link_to 'Создать задачу', new_task_path(project_id: @project.id), class: "btn btn-default" %>
+   <section>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Название</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.tasks.each do |task| %>
+          <tr>
+            <td><%= task.id %></td>
+            <td><%= link_to task.title, task_path(task) %></td>
+            <td>
+              <%= link_to 'Изменить', edit_task_path(task), class: "btn btn-outline-primary btn-sm" %>
 
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :task_title, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :task_description, class: 'form-control'%>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :project_id %>
-    <%= form.number_field :project_id, id: :task_project_id, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :status %>
-    <%= form.check_box :status, id: :task_status, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
-    <%= link_to 'Назад', :back, class: 'btn btn-outline-secondary' %>
-  </div>
-<% end %>
+              <%= link_to 'Удалить', task, method: :delete, data: { confirm: 'вы уверены?' } , class: "btn btn-outline-primary btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+       
