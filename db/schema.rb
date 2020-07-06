@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608064531) do
+ActiveRecord::Schema.define(version: 20200618161722) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "commenter"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180608064531) do
     t.integer "assignet_to"
     t.integer "assignet_by"
     t.integer "created_by"
+    t.float "prediction"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 

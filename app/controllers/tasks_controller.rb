@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-	before_action :set_task, only: [:show, :edit, :update, :destroy]
+	before_action :set_task, only: [:show, :edit, :update, :destroy, :close_task]
   before_action :load_users, only: [:new, :edit, :create]
   before_action :load_project, only:[:new, :edit, :create]
 
@@ -29,10 +29,28 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-   # @task = @project.tasks.create(task_params)
+    a = task_params["project_id"]
+   # @task = @project.tasks.create(task_params) БЫЛО ЗАКОМИЧЕНО
+ #  rnn_params = task_params[:task]
+  # if rnn_params[created_at].wday >5 || rnn_params[created_at].wday<1
+   # x_pred[:week] = 1
+ #else
+ #   x_pred[:week] = 0
+  #end
+ # if current_user.id == 185 //"Портал"
+  #  x_pred[:fos] = 1
+   # else
+    #x_pred[:fos] = 0
+  #end
+  #x_pred[:assigned] = rnn_params[assignet_to]
+  #x_pred[:Classificator] = rnn_params[project_id]
+  #x_pred[:project_id] = Project.find(rnn_params[project_id]).parent_id
+
+  pred = `python lib/assets/python/prediction.py #{a}`
+  # task_params[:task][:prediction] = pred.to_f 
     @task = Task.new(task_params)
     @task.created_by = current_user.id
-
+    @task.prediction = pred.to_f
 
     respond_to do |format|
       if @task.save
@@ -70,6 +88,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def close_task
+    @task.status = true
+    if @task.save!
+        format.html { redirect_to @task, success: 'Задача закрыта!' }
+      else
+        format.html { redirect_to @task, success: 'Задача не может быть закрыта.' }
+      end
+    end
 
   private
   def load_users
